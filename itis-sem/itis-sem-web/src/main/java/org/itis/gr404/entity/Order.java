@@ -16,6 +16,16 @@ public class Order {
     private String product;
     @Column(name = "PRICE")
     private int price;
+    @Column(name = "USER_ID", insertable = false, updatable = false)
+    private int userId;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     @ManyToOne
     @JoinColumn(name = "USER_ID",referencedColumnName = "USER_ID")

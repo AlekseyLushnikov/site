@@ -15,12 +15,10 @@
     </param-value>
   </context-param>
 
-  <!-- Создаёт контейнер Spring, разделяемый всеми сервлетами и фильтрами -->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
 
-  <!-- Базовый сервлет, обрабатывает все запросы к приложению -->
   <servlet>
     <servlet-name>appServlet</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

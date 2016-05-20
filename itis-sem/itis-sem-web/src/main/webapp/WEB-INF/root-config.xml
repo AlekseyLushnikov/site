@@ -19,8 +19,8 @@
     <import resource="data.xml" />
 
     <!-- @Component, @Service -->
-    <context:component-scan base-package="org.itis.gv404.dao" />
-    <context:component-scan base-package="org.itis.gv404.controller" />
+    <context:component-scan base-package="org.itis.gr404.dao" />
+    <context:component-scan base-package="org.itis.gr404.controller" />
 
 
 </beans>

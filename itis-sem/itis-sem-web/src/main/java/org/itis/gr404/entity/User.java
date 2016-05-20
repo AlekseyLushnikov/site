@@ -1,8 +1,12 @@
 package org.itis.gr404.entity;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javax.swing.text.StyleConstants.Size;
 
 @Entity
 @Table(name= "users")
