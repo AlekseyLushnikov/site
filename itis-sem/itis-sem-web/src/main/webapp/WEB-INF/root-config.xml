@@ -18,6 +18,9 @@
     <!-- Data Access Resources -->
     <import resource="data.xml" />
 
+    <bean id="userValidator" class="org.itis.gr404.validator.UserFormValidator" />
+    <bean id="orderValidator" class="org.itis.gr404.validator.OrderFormValidator" />
+
     <!-- @Component, @Service -->
     <context:component-scan base-package="org.itis.gr404.dao" />
     <context:component-scan base-package="org.itis.gr404.controller" />

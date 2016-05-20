@@ -37,8 +37,12 @@
             <td>${user.lastname}</td>
             <td>${user.firstname}</td>
             <td>${user.age}</td>
-            <td><a href="/itis-sem-web/user/edit/${user.id}">Edit</a></td>
-            <td><a href="/itis-sem-web/user/delete/${user.id}">Delete</a></td>
+            <td><a href="/itis-sem-web/user/edit/${user.id}">
+                <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+            </a></td>
+            <td><a href="/itis-sem-web/user/delete/${user.id}">
+                <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+            </a></td>
         </tr>
     </c:forEach>
     </tbody>

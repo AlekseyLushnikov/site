@@ -2,20 +2,22 @@ package org.itis.gr404.controller;
 
 import org.itis.gr404.dao.UserRepository;
 import org.itis.gr404.entity.User;
+import org.itis.gr404.validator.UserFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
 public class UserController {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserFormValidator userFormValidator;
 
     @RequestMapping(value = "/user/all", method = RequestMethod.GET)
     public String all(ModelMap model){
@@ -30,14 +32,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute User user, BindingResult result){
+    public String addUser(@ModelAttribute @Validated User user, BindingResult result){
+
+        userFormValidator.validate(user, result);
         if (result.hasErrors()) {
             return "addUser";
         }
-        try {
-            userRepository.getUser(user.getId());
+        if(userRepository.getUser(user.getId()) != null) {
             userRepository.updateUser(user);
-        }catch (Exception e){
+        }else {
             userRepository.createUser(user);
         }
         return "redirect:/user/all";

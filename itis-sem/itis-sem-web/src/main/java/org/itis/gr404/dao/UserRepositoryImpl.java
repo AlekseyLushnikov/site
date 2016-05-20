@@ -1,6 +1,7 @@
 package org.itis.gr404.dao;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.itis.gr404.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,7 +22,7 @@ public class UserRepositoryImpl implements UserRepository{
 
     @Transactional
     public User getUser(Integer id) {
-        return (User) sessionFactory.getCurrentSession().get(User.class, id);
+        return (User) sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.eq("id", id)).uniqueResult();
     }
 
     @Transactional

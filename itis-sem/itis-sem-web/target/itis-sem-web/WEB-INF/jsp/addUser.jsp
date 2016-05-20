@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Title</title>
@@ -15,17 +16,20 @@
 </head>
 <body>
 <form:form method="POST" action="/itis-sem-web/user/add" modelAttribute="user">
+            <form:hidden path="id"/>
     <table class="table table-hover">
             <td><label>Lastname</label></td>
             <td><form:input path="lastname"/></td>
+            <td><FONT color="red"><springForm:errors path="lastname" cssClass="error" /></FONT></td>
         <tr>
             <td><label>Firstname</label></td>
             <td><form:input path="firstname"/></td>
-
+            <td><FONT color="red"><springForm:errors path="firstname" cssClass="error" /></FONT></td>
         </tr>
         <tr>
             <td><label>Age</label></td>
             <td><form:input path="age"/></td>
+            <td><FONT color="red"><springForm:errors path="age" cssClass="error" /></FONT></td>
         </tr>
     </table>
     <div class="btn-group">

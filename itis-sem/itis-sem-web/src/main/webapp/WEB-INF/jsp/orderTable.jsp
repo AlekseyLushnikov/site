@@ -38,8 +38,13 @@
             <td>${order.user.lastname}</td>
             <td>${order.product}</td>
             <td>${order.price}</td>
-            <td><a href="/itis-sem-web/order/edit/${order.id}">Edit</a></td>
-            <td><a href="/itis-sem-web/order/delete/${order.id}">Delete</a></td>
+            <td><a href="/itis-sem-web/order/edit/${order.id}">
+                <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+            </a>
+            </td>
+            <td><a href="/itis-sem-web/order/delete/${order.id}">
+                <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+            </a></td>
         </tr>
     </c:forEach>
     </tbody>

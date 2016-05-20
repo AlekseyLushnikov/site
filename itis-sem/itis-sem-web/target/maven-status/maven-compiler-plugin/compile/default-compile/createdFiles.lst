@@ -1,0 +1,10 @@
+org\itis\gr404\dao\UserRepository.class
+org\itis\gr404\entity\User.class
+org\itis\gr404\validator\OrderFormValidator.class
+org\itis\gr404\controller\OrderController.class
+org\itis\gr404\validator\UserFormValidator.class
+org\itis\gr404\entity\Order.class
+org\itis\gr404\dao\UserRepositoryImpl.class
+org\itis\gr404\controller\UserController.class
+org\itis\gr404\dao\OrderRepository.class
+org\itis\gr404\dao\OrderRepositoryImpl.class

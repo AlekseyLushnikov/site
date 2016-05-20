@@ -4,11 +4,13 @@ import org.itis.gr404.dao.OrderRepository;
 import org.itis.gr404.dao.UserRepository;
 import org.itis.gr404.dao.UserRepositoryImpl;
 import org.itis.gr404.entity.Order;
+import org.itis.gr404.validator.OrderFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,9 @@ public class OrderController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    OrderFormValidator orderFormValidator;
 
     @RequestMapping(value = "/order/all", method = RequestMethod.GET)
     public String all(ModelMap model) {
@@ -43,12 +48,16 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/order/add", method = RequestMethod.POST)
-    public String addOrder(@ModelAttribute Order order, BindingResult result) {
+    public String addOrder(@ModelAttribute @Validated Order order, BindingResult result, Model model) {
+        orderFormValidator.validate(order, result);
+        if (result.hasErrors()) {
+            model.addAttribute("users", userRepository.getUsers());
+            return "addOrder";
+        }
         order.setUser(userRepository.getUser(order.getUserId()));
-        try {
-            orderRepository.getOrder(order.getId());
+        if (orderRepository.getOrder(order.getId()) != null) {
             orderRepository.updateOrder(order);
-        } catch (Exception e){
+        } else{
             orderRepository.createOrder(order);
         }
         return "redirect:/order/all";
